@@ -1,0 +1,28 @@
+{
+  "elements": [
+    {
+      "type": "list",
+      "elements": [
+        {
+          "type": "text",
+          "value": "Text 1"
+        },{
+          "type": "text",
+          "value": "Text 2"
+        },{
+          "type": "text",
+          "value": "Text 3"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "value": "Button Text"
+    },
+    {
+      "type": "text",
+      "value": "Footer text"
+    }
+  ]
+}
+

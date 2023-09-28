@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
-        android:background="#000"
+        android:background="#50000000"
         app:layout_constraintTop_toBottomOf="@id/tvItem" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
