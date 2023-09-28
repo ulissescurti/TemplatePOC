@@ -20,13 +20,13 @@ class ElementViewFactory {
                     text = element.value
                     element.backgroundColor?.let {
                         setBackgroundColor(ContextCompat.getColor(context, it))
-                        setPadding(
-                            element.marginInDp.px,
-                            element.marginInDp.px,
-                            element.marginInDp.px,
-                            element.marginInDp.px
-                        )
                     }
+                    setPadding(
+                        element.marginInDp.px,
+                        element.marginInDp.px,
+                        element.marginInDp.px,
+                        element.marginInDp.px
+                    )
                 }
             }
 

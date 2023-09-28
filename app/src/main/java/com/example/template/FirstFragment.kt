@@ -13,4 +13,6 @@ class FirstFragment : TemplateFragment() {
     override fun getTemplateData(): TemplateData {
         return TemplateDataHelper.getMockedTemplateData()
     }
+
+
 }

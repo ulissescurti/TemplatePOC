@@ -9,4 +9,3 @@ data class TemplateData(
 open class Element(val marginInDp: Int)
 class TemplateButton(val value: String, @ColorRes val backgroundColor: Int? = null, marginInDp: Int = 0) : Element(marginInDp)
 class TemplateText(val value: String, marginInDp: Int = 0) : Element(marginInDp)
-
