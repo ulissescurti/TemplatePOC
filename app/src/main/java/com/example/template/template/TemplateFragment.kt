@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.template.ListAdapter
 import com.example.template.databinding.FragmentTemplateBinding
-import com.example.template.element.ElementViewFactory
 
 abstract class TemplateFragment : Fragment() {
 
     private var _binding: FragmentTemplateBinding? = null
     protected val binding get() = _binding!!
+
+    private var adapter: ListAdapter? = null
 
     abstract fun getTemplateData(): TemplateData
 
@@ -36,12 +38,13 @@ abstract class TemplateFragment : Fragment() {
 
     private fun setupUI() {
         val templateData = getTemplateData()
-        val elementViewFactory = ElementViewFactory()
-        templateData.elements.forEach { element ->
-            binding.containerTemplate.addView(
-                elementViewFactory.createView(requireContext(), element)
-            )
+
+        binding.tvHeader.text = (templateData.elements[0] as TemplateText).value
+        binding.btnTop.text = (templateData.elements[1] as TemplateButton).value
+        adapter = ListAdapter((templateData.elements[2] as TemplateList).items) {
+
         }
+        binding.rvButtons.adapter = adapter
     }
 }
 
