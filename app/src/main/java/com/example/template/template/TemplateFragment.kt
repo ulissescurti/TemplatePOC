@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.template.ListAdapter
 import com.example.template.databinding.FragmentTemplateBinding
 
@@ -13,9 +14,13 @@ abstract class TemplateFragment : Fragment() {
     private var _binding: FragmentTemplateBinding? = null
     protected val binding get() = _binding!!
 
+    private val viewModel: TemplateViewModel by activityViewModels()
+
     private var adapter: ListAdapter? = null
 
     abstract fun getTemplateData(): TemplateData
+
+    abstract fun clickCallback(element: Element)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,12 +44,31 @@ abstract class TemplateFragment : Fragment() {
     private fun setupUI() {
         val templateData = getTemplateData()
 
-        binding.tvHeader.text = (templateData.elements[0] as TemplateText).value
-        binding.btnTop.text = (templateData.elements[1] as TemplateButton).value
-        adapter = ListAdapter((templateData.elements[2] as TemplateList).items) {
+        binding.run {
+            tvHeader.run {
+                val data = (templateData.elements[0] as TemplateText)
+                text = data.value
+                setOnClickListener {
+                    clickCallback(data)
+                    viewModel.sendEvent(data)
+                }
+            }
 
+            btnTop.run {
+                val data = (templateData.elements[1] as TemplateButton)
+                text = data.value
+                setOnClickListener {
+                    clickCallback(data)
+                    viewModel.sendEvent(data)
+                }
+            }
+
+            adapter = ListAdapter((templateData.elements[2] as TemplateList).items) { data ->
+                clickCallback(data)
+                viewModel.sendEvent(data)
+            }
+            rvButtons.adapter = adapter
         }
-        binding.rvButtons.adapter = adapter
     }
 }
 

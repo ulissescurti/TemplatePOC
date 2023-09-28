@@ -7,6 +7,6 @@ data class TemplateData(
 )
 
 open class Element
-class TemplateButton(val value: String) : Element()
-class TemplateText(val value: String) : Element()
-class TemplateList(val items: MutableList<TemplateButton>) : Element()
+data class TemplateButton(val value: String) : Element()
+data class TemplateText(val value: String) : Element()
+data class TemplateList(val items: MutableList<TemplateButton>) : Element()
