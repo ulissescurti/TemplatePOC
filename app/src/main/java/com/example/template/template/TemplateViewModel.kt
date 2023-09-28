@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 class TemplateViewModel: ViewModel() {
 
+    //todo implementar com flow tambem
+
     private val _eventsLiveData = MutableLiveData<Element>()
     val eventsLiveData: LiveData<Element> = _eventsLiveData
 
