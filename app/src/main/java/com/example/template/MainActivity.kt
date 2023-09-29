@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.template.databinding.ActivityMainBinding
 import com.example.template.template.TemplateViewModel
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         observeData()
+        showData()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -42,6 +45,14 @@ class MainActivity : AppCompatActivity() {
     private fun observeData() {
         viewModel.eventsLiveData.observe(this) {
             Log.i("Event test", it.toString())
+        }
+    }
+
+    private fun showData() {
+        lifecycleScope.launch {
+            viewModel.eventsSharedFlow.collect { element ->
+                Log.i("Event test", element.toString())
+            }
         }
     }
 }
