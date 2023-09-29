@@ -50,7 +50,8 @@ abstract class TemplateFragment : Fragment() {
                 text = data.value
                 setOnClickListener {
                     clickCallback(data)
-                    viewModel.sendEvent(data)
+//                    viewModel.sendEvent(data)
+                    viewModel.emitEvent(data)
                 }
             }
 
@@ -59,13 +60,15 @@ abstract class TemplateFragment : Fragment() {
                 text = data.value
                 setOnClickListener {
                     clickCallback(data)
-                    viewModel.sendEvent(data)
+//                    viewModel.sendEvent(data)
+                    viewModel.emitEvent(data)
                 }
             }
 
             adapter = ListAdapter((templateData.elements[2] as TemplateList).items) { data ->
                 clickCallback(data)
-                viewModel.sendEvent(data)
+//                viewModel.sendEvent(data)
+                viewModel.emitEvent(data)
             }
             rvButtons.adapter = adapter
         }
